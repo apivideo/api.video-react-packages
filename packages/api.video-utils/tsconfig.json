@@ -1,5 +1,5 @@
 {
-  "extends": "@acme/tsconfig/react-library.json",
+  "extends": "@api.video/tsconfig/react-library.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

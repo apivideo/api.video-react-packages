@@ -1,1 +1,1 @@
-module.exports = require("eslint-preset-acme");
+module.exports = require("eslint-preset-api.video");

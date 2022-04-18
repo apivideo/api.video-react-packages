@@ -1,13 +1,13 @@
-import { Button } from "@acme/core";
-import { useIsomorphicLayoutEffect } from "@acme/utils";
+import { Button } from "@api.video/core";
+import { useIsomorphicLayoutEffect } from "@api.video/utils";
 
 export default function Docs() {
   useIsomorphicLayoutEffect(() => {
-    console.log("Acme docs page");
+    console.log("api.video docs page");
   }, []);
   return (
     <div>
-      <h1>Acme Documentation</h1>
+      <h1>api.video Documentation</h1>
       <Button>Click me</Button>
     </div>
   );

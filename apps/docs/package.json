@@ -1,5 +1,5 @@
 {
-  "name": "@acme/docs",
+  "name": "@api.video/docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,18 +10,18 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
   },
   "dependencies": {
-    "@acme/core": "*",
-    "@acme/utils": "*",
+    "@api.video/core": "*",
+    "@api.video/utils": "*",
     "next": "^12.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@acme/tsconfig": "*",
+    "@api.video/tsconfig": "*",
     "@types/node": "^17.0.12",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "eslint-preset-acme": "*",
+    "eslint-preset-api.video": "*",
     "typescript": "^4.5.4"
   }
 }
