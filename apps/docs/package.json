@@ -1,5 +1,5 @@
 {
-  "name": "@api.video/docs",
+  "name": "@apivideo/docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,18 +10,18 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
   },
   "dependencies": {
-    "@api.video/core": "*",
-    "@api.video/utils": "*",
+    "@apivideo/core": "*",
+    "@apivideo/utils": "*",
     "next": "^12.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@api.video/tsconfig": "*",
+    "@apivideo/tsconfig": "*",
     "@types/node": "^17.0.12",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "eslint-preset-api.video": "*",
+    "eslint-preset-apivideo": "*",
     "typescript": "^4.5.4"
   }
 }
