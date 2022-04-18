@@ -1,5 +1,5 @@
 {
-  "name": "@apivideo/upload-button",
+  "name": "@api.video/upload-button",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
