@@ -10,12 +10,14 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
   },
   "dependencies": {
+    "@api.video/upload-button": "*",
     "@apivideo/core": "*",
     "@apivideo/utils": "*",
-    "@api.video/upload-button": "*",
+    "@types/styled-components": "^5.1.25",
     "next": "^12.0.8",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@apivideo/tsconfig": "*",

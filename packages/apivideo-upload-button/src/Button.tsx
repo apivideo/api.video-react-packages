@@ -4,17 +4,23 @@ import { VideoUploader } from '@api.video/video-uploader'
 export interface ButtonProps {
   children?: React.ReactNode
   apiKey: string
+  style?: React.CSSProperties
+  disabledWhileUploading?: boolean
 }
 
 export function Button({ 
   children,
-  apiKey 
+  apiKey,
+  style,
 }: ButtonProps) {
+  // LOCAL STATE
   const [progress, setProgress] = React.useState<number>(0)
   const [uploadToken, setUploadToken] = React.useState<{ token: string, ttl: number } | undefined>(undefined)
 
+  // CONSTANTS
   const inputRef = React.useRef<HTMLInputElement>(null)
 
+  // COMPONENT LIFECYCLES
   React.useEffect(() => {
     const getUploadToken = async (): Promise<void> => {
       const { access_token }: { access_token: string } = await fetch(
@@ -57,8 +63,7 @@ export function Button({
     getUploadToken()
   }, [apiKey])
 
-  console.log(uploadToken)
-
+  // HANDLERS - METHODS
   const handleClick = (): void => inputRef.current?.click()
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.currentTarget?.files || !uploadToken) return
@@ -70,10 +75,20 @@ export function Button({
     videoUploader.upload()
   }
 
-  console.log(progress)
+  // RETURN
   return (
     <>
-      <button onClick={handleClick}>{children ?? "Upload Button"}</button>
+      <button 
+        onClick={handleClick}
+        style={style ?? {
+          background: '#FFFFFF',
+          border: '1px solid #000000',
+          borderRadius: 3,
+          padding: '5px 10px'
+        }}
+      >
+        {children ?? "Upload Button"}
+      </button>
       <input type="file" hidden ref={inputRef} onChange={handleUpload} />
     </>
   )
