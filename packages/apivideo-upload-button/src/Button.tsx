@@ -80,7 +80,8 @@ export function Button({
     <>
       <button 
         onClick={handleClick}
-        style={style ?? {
+        style={{
+          ...style,
           background: '#FFFFFF',
           border: '1px solid #000000',
           borderRadius: 3,
