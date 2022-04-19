@@ -17,11 +17,14 @@
   },
   "devDependencies": {
     "@apivideo/tsconfig": "*",
-    "eslint-preset-apivideo": "*",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
+    "eslint-preset-apivideo": "*",
     "react": "^17.0.2",
     "tsup": "^5.10.1",
     "typescript": "^4.5.3"
+  },
+  "dependencies": {
+    "@api.video/video-uploader": "^1.0.4"
   }
 }

@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@api.video/video-uploader@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@api.video/video-uploader/-/video-uploader-1.0.4.tgz#290a06948c669050f5edae5fd246f25371edc8b8"
+  integrity sha512-1z3eJXOmUInZWDMiH9lbXDCcP/YWI1zQ+RDm2xeaGPEgTTEkAPBd4zGuSIaMF7gyW1cAmfmveQ8WBxQNl+c7lA==
+  dependencies:
+    core-js "^3.8.3"
+
 "@babel/code-frame@7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -508,6 +515,11 @@ core-js-pure@^3.20.2:
   version "3.22.0"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.22.0.tgz#0eaa54b6d1f4ebb4d19976bb4916dfad149a3747"
   integrity sha512-ylOC9nVy0ak1N+fPIZj00umoZHgUVqmucklP5RT5N+vJof38klKn8Ze6KGyvchdClvEBr6LcQqJpI216LUMqYA==
+
+core-js@^3.8.3:
+  version "3.22.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.22.0.tgz#b52007870c5e091517352e833b77f0b2d2b259f3"
+  integrity sha512-8h9jBweRjMiY+ORO7bdWSeWfHhLPO7whobj7Z2Bl0IDo00C228EdGgH7FE4jGumbEjzcFfkfW8bXgdkEDhnwHQ==
 
 cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
