@@ -5,7 +5,6 @@ export interface ButtonProps {
   children?: React.ReactNode
   apiKey: string
   style?: React.CSSProperties
-  disabledWhileUploading?: boolean
 }
 
 export function Button({ 
@@ -85,7 +84,8 @@ export function Button({
           background: '#FFFFFF',
           border: '1px solid #000000',
           borderRadius: 3,
-          padding: '5px 10px'
+          padding: '5px 10px',
+          cursor: 'pointer'
         }}
       >
         {children ?? "Upload Button"}
