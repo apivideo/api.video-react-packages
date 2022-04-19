@@ -12,7 +12,7 @@ export default function Docs() {
       <S.DisplayContainer>
         <S.PackageContainer>
           <h3>{UploadButton.displayName}</h3>
-          <UploadButton apiKey="Ia8SciREqEq01syrKgeYXCm7L5jNUetFAfiGv67rnWJ" />
+          <UploadButton apiKey="Ia8SciREqEq01syrKgeYXCm7L5jNUetFAfiGv67rnWJ" disabledOnUpload />
         </S.PackageContainer>
       </S.DisplayContainer>
     </S.GlobalContainer>

@@ -1,20 +1,25 @@
 import * as React from "react";
 import { VideoUploader } from '@api.video/video-uploader'
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode
   apiKey: string
   style?: React.CSSProperties
+  disabledOnUpload?: boolean
 }
 
-export function Button({ 
+export function Button({
   children,
   apiKey,
   style,
+  disabledOnUpload, 
+  ...props 
 }: ButtonProps) {
   // LOCAL STATE
   const [progress, setProgress] = React.useState<number>(0)
-  const [uploadToken, setUploadToken] = React.useState<{ token: string, ttl: number } | undefined>(undefined)
+  const [uploadToken, setUploadToken] = 
+    React.useState<{ token: string, ttl: number } | undefined>(undefined)
+  const [isDisabled, setIsDisabled] = React.useState<boolean | undefined>(false)
 
   // CONSTANTS
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -61,6 +66,9 @@ export function Button({
     }
     getUploadToken()
   }, [apiKey])
+  React.useEffect(() => {
+    setIsDisabled(props.disabled || (disabledOnUpload && progress > 0 && progress < 100 ))
+  }, [props.disabled, disabledOnUpload, progress])
 
   // HANDLERS - METHODS
   const handleClick = (): void => inputRef.current?.click()
@@ -78,6 +86,7 @@ export function Button({
   return (
     <>
       <button 
+        {...props}
         onClick={handleClick}
         style={{
           ...style,
@@ -85,8 +94,9 @@ export function Button({
           border: '1px solid #000000',
           borderRadius: 3,
           padding: '5px 10px',
-          cursor: 'pointer'
+          cursor: isDisabled ? 'not-allowed' : 'pointer'
         }}
+        disabled={isDisabled}
       >
         {children ?? "Upload Button"}
       </button>
