@@ -62,7 +62,7 @@ export function Button({
               Authorization: access_token
           },
           body: JSON.stringify({
-            ttl: timeToLive ?? 0
+            ttl: timeToLive ?? 30
           })
         })
         .then(res => res.json())
