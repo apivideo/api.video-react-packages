@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "extends": "@apivideo/tsconfig/nextjs.json",
+  "extends": "@api.video/tsconfig/nextjs.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",

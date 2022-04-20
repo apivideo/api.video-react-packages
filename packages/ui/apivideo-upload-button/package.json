@@ -16,7 +16,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@apivideo/tsconfig": "*",
+    "@api.video/tsconfig": "*",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
     "eslint-preset-apivideo": "*",

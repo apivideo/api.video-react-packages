@@ -1,5 +1,5 @@
 import { Button as UploadButton } from "@api.video/upload-button"
-import { useIsomorphicLayoutEffect } from "@apivideo/utils";
+import { useIsomorphicLayoutEffect } from "@api.video/utils";
 import * as S from '../styles'
 
 export default function Docs() {
