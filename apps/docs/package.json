@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@api.video/upload-button": "*",
+    "@api.video/contents-list": "*",
     "@api.video/core": "*",
     "@api.video/utils": "*",
     "@types/styled-components": "^5.1.25",
