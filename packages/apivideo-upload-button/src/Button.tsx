@@ -6,13 +6,15 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   apiKey: string
   style?: React.CSSProperties
   disabledOnUpload?: boolean
+  timeToLive?: number
 }
 
 export function Button({
   children,
   apiKey,
   style,
-  disabledOnUpload, 
+  disabledOnUpload,
+  timeToLive,
   ...props 
 }: ButtonProps) {
   // LOCAL STATE
@@ -58,14 +60,17 @@ export function Button({
           method: 'POST',
           headers: {
               Authorization: access_token
-          }
+          },
+          body: JSON.stringify({
+            ttl: timeToLive ?? 0
+          })
         })
         .then(res => res.json())
       
       setUploadToken({ token, ttl })
     }
     getUploadToken()
-  }, [apiKey])
+  }, [apiKey, timeToLive])
   React.useEffect(() => {
     setIsDisabled(props.disabled || (disabledOnUpload && progress > 0 && progress < 100 ))
   }, [props.disabled, disabledOnUpload, progress])
