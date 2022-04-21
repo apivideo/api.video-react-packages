@@ -7,6 +7,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   style?: React.CSSProperties
   disabledOnUpload?: boolean
   timeToLive?: number
+  withAccessToken?: boolean
 }
 
 export function Button({
@@ -15,12 +16,12 @@ export function Button({
   style,
   disabledOnUpload,
   timeToLive,
+  withAccessToken,
   ...props 
 }: ButtonProps) {
   // LOCAL STATE
   const [progress, setProgress] = React.useState<number>(0)
-  const [uploadToken, setUploadToken] = 
-    React.useState<{ token: string, ttl: number } | undefined>(undefined)
+  const [uploadToken, setUploadToken] = React.useState<string | undefined>(undefined)
   const [isDisabled, setIsDisabled] = React.useState<boolean | undefined>(false)
 
   // CONSTANTS
@@ -29,6 +30,7 @@ export function Button({
   // COMPONENT LIFECYCLES
   React.useEffect(() => {
     const getUploadToken = async (): Promise<void> => {
+      // Get the access token
       const { access_token }: { access_token: string } = await fetch(
         'https://ws.api.video/auth/api-key', 
         {
@@ -39,8 +41,15 @@ export function Button({
         })
         .then(res => res.json())
 
-      const { data }: { data: Array<{ token: string, ttl: number }> } = await fetch(
-        'https://ws.api.video/upload-tokens', 
+      // Use the access token to upload
+      if (withAccessToken) {
+        setUploadToken(access_token)
+        return
+      }
+
+      // Get the list of upload tokens
+      const { data }: { data: Array<{ token: string }> } = await fetch(
+        'https://ws.api.video/upload-tokens',
         {
           method: 'GET',
           headers: {
@@ -49,12 +58,14 @@ export function Button({
         })
         .then(res => res.json())
       
+      // There's already a usable upload token
       if (data && data.length > 0) {
-        setUploadToken({ token: data[0].token, ttl: data[0].ttl })
+        setUploadToken(data[0].token)
         return
       }
 
-      const { token, ttl }: { token: string, ttl: number } = await fetch(
+      // Create an upload token
+      const { token }: { token: string } = await fetch(
         'https://ws.api.video/upload-tokens', 
         {
           method: 'POST',
@@ -62,29 +73,49 @@ export function Button({
               Authorization: access_token
           },
           body: JSON.stringify({
-            ttl: timeToLive ?? 30
+            ttl: timeToLive
           })
         })
         .then(res => res.json())
       
-      setUploadToken({ token, ttl })
+      setUploadToken(token)
     }
     getUploadToken()
-  }, [apiKey, timeToLive])
+  }, [apiKey, timeToLive, withAccessToken])
   React.useEffect(() => {
     setIsDisabled(props.disabled || (disabledOnUpload && progress > 0 && progress < 100 ))
   }, [props.disabled, disabledOnUpload, progress])
 
   // HANDLERS - METHODS
   const handleClick = (): void => inputRef.current?.click()
-  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (!e.currentTarget?.files || !uploadToken) return
-    const videoUploader = new VideoUploader({
-      uploadToken: uploadToken.token,
-      file: e.currentTarget.files[0]
-    })
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+    if (!e.currentTarget?.files || !e.currentTarget.files[0] || !uploadToken) return
+    const file = e.currentTarget.files[0]
+    let videoId = undefined
+    if (withAccessToken) {
+      const videoOjb: { videoId: string } = await fetch(
+        'https://ws.api.video/videos',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: uploadToken
+          },
+          body: JSON.stringify({
+            title: 'New video'
+          }),
+        })
+        .then(res => res.json())
+      videoId = videoOjb.videoId
+    }
+
+    const options = withAccessToken && videoId
+      ? { accessToken: uploadToken, file, videoId }
+      : { uploadToken: uploadToken, file }
+    const videoUploader = new VideoUploader(options)
     videoUploader.onProgress(e => setProgress(Math.round(e.uploadedBytes*100/e.totalBytes)))
     videoUploader.upload()
+    // Enable the input to upload same file again
+    inputRef.current!.value = ''
   }
 
   // RETURN
