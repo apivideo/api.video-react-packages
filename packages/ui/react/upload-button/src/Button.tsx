@@ -2,7 +2,7 @@ import * as React from "react";
 import { VideoUploader } from '@api.video/video-uploader'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode
+  children: React.ReactNode
   apiKey: string
   style?: React.CSSProperties
   disabledOnUpload?: boolean
@@ -129,7 +129,7 @@ export function Button({
         }}
         disabled={isDisabled}
       >
-        {children ?? "Upload Button"}
+        {children}
       </button>
       <input type="file" hidden ref={inputRef} onChange={handleUpload} />
     </>
