@@ -12,6 +12,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn
       - name: Publish to npm
-        run: npm publish workspace=packages/ui/react
+        run: npm publish --workspace=packages/ui/react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
