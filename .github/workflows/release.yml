@@ -1,4 +1,4 @@
-name: Release React Native Live Stream package
+name: Release packages
 on:
   release:
     types: [published]
