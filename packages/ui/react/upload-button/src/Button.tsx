@@ -47,8 +47,8 @@ export function Button({
         file
       })
       await videoUploader.upload()
-    } catch (error) {
-      setError({ error: true, message: 'An error occured during your upload' })
+    } catch (error: any) {
+      setError({ error: true, message: error.title ?? 'An error occured during your upload' })
     } finally {
       setUploading(false)
       // Enable the input to upload same file again
