@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UploadProgressEvent, VideoUploader } from '@api.video/video-uploader'
+import { UploadProgressEvent, VideoUploader, VideoUploadResponse } from '@api.video/video-uploader'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
@@ -7,7 +7,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   style?: React.CSSProperties
   onUploadProgress?: (progress: UploadProgressEvent) => void
   onUploadError?: (errorMessage: string) => void
-  onUploadSuccess?: () => void
+  onUploadSuccess?: (video: VideoUploadResponse) => void
 }
 
 export function Button({
@@ -35,8 +35,8 @@ export function Button({
       videoUploader.onProgress(e => {
         onUploadProgress && onUploadProgress(e)
       })
-      await videoUploader.upload()
-      onUploadSuccess && onUploadSuccess()
+      const video = await videoUploader.upload()
+      onUploadSuccess && onUploadSuccess(video)
     } catch (error: any) {
       onUploadError && onUploadError(error.title ?? 'An error occured during your upload')
     } finally {
