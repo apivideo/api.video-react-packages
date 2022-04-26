@@ -82,7 +82,7 @@ Example:
 import { UploadButton } from "@api.video/upload-button"
 
 export default function MyComponent() {
-  return <UploadButton>YOUR CHILDREN</UploadButton>
+  return <UploadButton>Click Me</UploadButton>
 }
 ```
 
@@ -102,7 +102,7 @@ export default function MyComponent() {
       uploadToken="YOUR_UPLOAD_TOKEN"
       // ...
     >
-      YOUR CHILDREN
+      Click Me
     </UploadButton>
   )
 }
@@ -124,7 +124,7 @@ export default function MyComponent() {
       style={{ color: 'blue', background: 'red', }}
       // ...
     >
-      YOUR CHILDREN
+      Click Me
     </UploadButton>
   )
 }
@@ -148,7 +148,7 @@ export default function MyComponent() {
       onUploadProgress={(progress) => console.log(progress.uploadedBytes)}
       // ...
     >
-      YOUR CHILDREN
+      Click Me
     </UploadButton>
   )
 }
@@ -172,7 +172,7 @@ export default function MyComponent() {
       onUploadSuccess={(video) => console.log(video.videoId)}
       // ...
     >
-      YOUR CHILDREN
+      Click Me
     </UploadButton>
   )
 }
@@ -195,7 +195,7 @@ export default function MyComponent() {
       onUploadError={(errorMessage) => console.log(errorMessage)}
       // ...
     >
-      YOUR CHILDREN
+      Click Me
     </UploadButton>
   )
 }
