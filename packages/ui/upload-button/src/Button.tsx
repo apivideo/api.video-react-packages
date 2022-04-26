@@ -5,41 +5,28 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children: React.ReactNode
   uploadToken: string
   style?: React.CSSProperties
-  disabledOnUpload?: boolean
-  withError?: boolean
-  errorMessage?: string
+  onUpload?: () => void
+  onError?: () => void
+  onSuccess?: () => void
 }
 
 export function Button({
   children,
   uploadToken,
   style,
-  disabledOnUpload,
-  withError,
-  errorMessage,
+  onError,
+  onUpload,
+  onSuccess,
   ...props 
 }: ButtonProps) {
-  // LOCAL STATE
-  const [isDisabled, setIsDisabled] = React.useState<boolean | undefined>(false)
-  const [uploading, setUploading] = React.useState<boolean>(false)
-  const [error, setError] = React.useState<{ error: boolean, message: string }>(
-    { error: false, message: '' }
-  )
-
   // CONSTANTS
   const inputRef = React.useRef<HTMLInputElement>(null)
-
-  // COMPONENT LIFECYCLES
-  React.useEffect(() => {
-    setIsDisabled(props.disabled || (disabledOnUpload && uploading))
-  }, [props.disabled, disabledOnUpload, uploading])
 
   // HANDLERS - METHODS
   const handleClick = (): void => inputRef.current?.click()
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (!e.currentTarget?.files || !e.currentTarget.files[0] || !uploadToken) return
-    setUploading(true)
-    setError({ error: false, message: '' })
+    onUpload && onUpload()
     try {
       const file = e.currentTarget.files[0]
       const videoUploader = new VideoUploader({
@@ -47,10 +34,10 @@ export function Button({
         file
       })
       await videoUploader.upload()
+      onSuccess && onSuccess()
     } catch (error: any) {
-      setError({ error: true, message: error.title ?? 'An error occured during your upload' })
+      onError && onError()
     } finally {
-      setUploading(false)
       // Enable the input to upload same file again
       inputRef.current!.value = ''
     }
@@ -60,32 +47,19 @@ export function Button({
   return (
     <>
       <button 
-        {...props}
+        { ...props }
         onClick={handleClick}
         style={{
           background: '#FFFFFF',
-          border: `1px solid ${withError && error.error ? '#FF0000' : '#000000'}`,
+          border: '1px solid #000000',
           borderRadius: 3,
           padding: '5px 10px',
-          cursor: isDisabled ? 'not-allowed' : 'pointer',
-          color: `${withError && error.error ? '#FF0000' : 'unset'}`,
+          cursor: 'pointer',
           ...style,
         }}
-        disabled={isDisabled}
       >
         {children}
       </button>
-      {withError && error.error && (
-        <div
-          style={{
-            fontSize: '.7rem',
-            marginTop: '5px',
-            color: '#FF0000',
-          }}
-        >
-          {errorMessage ?? error.message}
-        </div>
-      )}
       <input type="file" hidden ref={inputRef} onChange={handleUpload} />
     </>
   )

@@ -2,6 +2,7 @@ import { Button as UploadButton } from "@api.video/upload-button"
 import { List } from "@api.video/contents-list"
 import { useIsomorphicLayoutEffect } from "@api.video/utils"
 import * as S from '../styles'
+import { useState } from "react";
 
 export default function Docs() {
   useIsomorphicLayoutEffect(() => {
@@ -13,7 +14,7 @@ export default function Docs() {
       <S.DisplayContainer>
         <S.PackageContainer>
           <h3>{UploadButton.displayName}</h3>
-          <UploadButton uploadToken="to6l43T5QSnYZPS0dpCjPp3U" withError disabledOnUpload>
+          <UploadButton uploadToken="to6l43T5QSnYZPS0dpCjPp3U">
             Upload Button
           </UploadButton>
         </S.PackageContainer>
