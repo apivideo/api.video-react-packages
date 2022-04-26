@@ -1,7 +1,7 @@
 import * as React from "react";
 import { UploadProgressEvent, VideoUploader, VideoUploadResponse } from '@api.video/video-uploader'
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface UploadButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   uploadToken: string
   style?: React.CSSProperties
@@ -10,7 +10,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   onUploadSuccess?: (video: VideoUploadResponse) => void
 }
 
-export function Button({
+export function UploadButton({
   children,
   uploadToken,
   style,
@@ -18,7 +18,7 @@ export function Button({
   onUploadProgress,
   onUploadSuccess,
   ...props 
-}: ButtonProps) {
+}: UploadButtonProps) {
   // CONSTANTS
   const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -67,4 +67,4 @@ export function Button({
   )
 }
 
-Button.displayName = "Upload button"
+UploadButton.displayName = "Upload button"
