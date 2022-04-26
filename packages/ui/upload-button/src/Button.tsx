@@ -1,22 +1,22 @@
 import * as React from "react";
-import { VideoUploader } from '@api.video/video-uploader'
+import { UploadProgressEvent, VideoUploader } from '@api.video/video-uploader'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   uploadToken: string
   style?: React.CSSProperties
-  onUpload?: () => void
-  onError?: () => void
-  onSuccess?: () => void
+  onUploadProgress?: (progress: UploadProgressEvent) => void
+  onUploadError?: (errorMessage: string) => void
+  onUploadSuccess?: () => void
 }
 
 export function Button({
   children,
   uploadToken,
   style,
-  onError,
-  onUpload,
-  onSuccess,
+  onUploadError,
+  onUploadProgress,
+  onUploadSuccess,
   ...props 
 }: ButtonProps) {
   // CONSTANTS
@@ -26,17 +26,19 @@ export function Button({
   const handleClick = (): void => inputRef.current?.click()
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (!e.currentTarget?.files || !e.currentTarget.files[0] || !uploadToken) return
-    onUpload && onUpload()
     try {
       const file = e.currentTarget.files[0]
       const videoUploader = new VideoUploader({
         uploadToken: uploadToken,
         file
       })
+      videoUploader.onProgress(e => {
+        onUploadProgress && onUploadProgress(e)
+      })
       await videoUploader.upload()
-      onSuccess && onSuccess()
+      onUploadSuccess && onUploadSuccess()
     } catch (error: any) {
-      onError && onError()
+      onUploadError && onUploadError(error.title ?? 'An error occured during your upload')
     } finally {
       // Enable the input to upload same file again
       inputRef.current!.value = ''
