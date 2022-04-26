@@ -1,8 +1,7 @@
-import { Button as UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/upload-button"
 import { List } from "@api.video/contents-list"
 import { useIsomorphicLayoutEffect } from "@api.video/utils"
 import * as S from '../styles'
-import { useState } from "react";
 
 export default function Docs() {
   useIsomorphicLayoutEffect(() => {
