@@ -7,7 +7,14 @@
     "video",
     "react",
     "upload",
-    "uploader"
+    "uploader",
+    "file-upload",
+    "front-end",
+    "file-uploader",
+    "file-picker",
+    "upload-component",
+    "react-uploader",
+    "js-uploader"
   ],
   "homepage": "https://github.com/apivideo/react-packages/tree/main/packages/ui/upload-button",
   "bugs": "https://github.com/apivideo/react-packages/issues",
