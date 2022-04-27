@@ -35,11 +35,13 @@ You'll need an upload token to use this component and upload to api.video.
 To get yours, follow these steps:
 
 1. [Log into your account](https://dashboard.api.video/login) or create one [here](https://dashboard.api.video/register).
-2. Go to [the official api.video documentation](https://docs.api.video/docs).
-3. Log into your account in the top right corner. If it's already done, be sure it's the account you want to use.
-4. Go to API reference -> Upload Tokens -> Generate an upload token
-5. Generate your upload token by clicking the "Try It!" button in the right section
-6. Copy the "token" value from the response in the right section.
+2. Copy your API key (sandbox or production if you are subscribed to one of our [plan](https://api.video/pricing)).
+3. Go to [the official api.video documentation](https://docs.api.video/docs).
+4. Log into your account in the top right corner. If it's already done, be sure it's the account you want to use.
+5. Go to API reference -> Upload Tokens -> Generate an upload token
+6. On the right, be sure the "Authentication" section contains the API key you want to use.
+7. Generate your upload token by clicking the "Try It!" button in the right section
+8. Copy the "token" value from the response in the right section.
 
 ## Installation
 
