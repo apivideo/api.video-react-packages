@@ -10,7 +10,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
   },
   "dependencies": {
-    "@api.video/upload-button": "*",
+    "@api.video/react-upload-button": "*",
     "@api.video/contents-list": "*",
     "@api.video/core": "*",
     "@api.video/utils": "*",
