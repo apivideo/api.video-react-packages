@@ -1,6 +1,16 @@
 {
   "name": "@api.video/upload-button",
-  "version": "0.0.5",
+  "version": "0.0.1",
+  "description": "api.video React upload button",
+  "keywords": [
+    "api.video",
+    "video",
+    "react",
+    "upload",
+    "uploader"
+  ],
+  "homepage": "https://github.com/apivideo/react-packages/tree/main/packages/ui/upload-button",
+  "bugs": "https://github.com/apivideo/react-packages/issues",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
