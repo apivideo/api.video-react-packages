@@ -46,18 +46,18 @@ To get yours, follow these steps:
 ## Installation
 
 ```sh
-npm install @api.video/upload-button
+npm install @api.video/react-upload-button
 # or
-yarn add @api.video/upload-button
+yarn add @api.video/react-upload-button
 ```
 
 ## Basic usage
 
 ```typescript
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 
 export default function MyComponent() {
-  return <UploadButton uploadToken="YOUR_UPLOAD_TOKEN">Upload Button</UploadButton>
+  return <UploadButton uploadToken="YOUR_UPLOAD_TOKEN">Click Me</UploadButton>
 }
 ```
 
@@ -81,7 +81,7 @@ A ReactNode children.
 Example:
 
 ```typescript
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 
 export default function MyComponent() {
   return <UploadButton>Click Me</UploadButton>
@@ -95,7 +95,7 @@ Your upload token, mandatory to upload a video to your api.video account.
 Example:
 
 ```typescript
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 
 export default function MyComponent() {
   return (
@@ -117,7 +117,7 @@ A React.CSSProperties object, used for component styling.
 Example:
 
 ```typescript
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 
 export default function MyComponent() {
   return (
@@ -141,7 +141,7 @@ Check the official documentation [here](https://github.com/apivideo/api.video-ty
 Example:
 
 ```typescript
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 
 export default function MyComponent() {
   return (
@@ -165,7 +165,7 @@ Check the official documentation [here](https://github.com/apivideo/api.video-no
 Example:
 
 ```typescript
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 
 export default function MyComponent() {
   return (
@@ -188,7 +188,7 @@ An error message object is accessible from it.
 Example:
 
 ```typescript
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 
 export default function MyComponent() {
   return (
