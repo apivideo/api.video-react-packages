@@ -65,14 +65,14 @@ export default function MyComponent() {
 
 ## Props
 
-| Name             | Type                                    | Mandatory | Example                                           |
-| ---------------- | --------------------------------------- | --------- | ------------------------------------------------- |
-| children         | React.ReactNode                         | Yes       |                                                   |
-| uploadToken      | string                                  | Yes       |                                                   |
-| style            | React.CSSProperties                     | No        | { color: 'blue', background: 'red, }              |
-| onUploadProgress | (progress: UploadProgressEvent) => void | No        | (progress) => console.log(progress.uploadedBytes) |
-| onUploadSuccess  | (video: VideoUploadResponse) => void    | No        | (video) => console.log(video)                     |
-| onUploadError    | (errorMessage: string) => void          | No        | (errorMessage) => console.log(errorMessage)       |
+| Name             | Type                                    | Mandatory | Description                                                      |
+| ---------------- | --------------------------------------- | --------- | ---------------------------------------------------------------- |
+| children         | React.ReactNode                         | Yes       | The button's children                                            |
+| uploadToken      | string                                  | Yes       | Your upload token                                                |
+| style            | React.CSSProperties                     | No        | An object of style                                               |
+| onUploadProgress | (progress: UploadProgressEvent) => void | No        | Callback called during the uploading process                     |
+| onUploadSuccess  | (video: VideoUploadResponse) => void    | No        | Callback called after the upload process has been completed      |
+| onUploadError    | (errorMessage: string) => void          | No        | Callback called in case of an error during the uploading process |
 
 ### children
 
@@ -110,7 +110,7 @@ export default function MyComponent() {
 }
 ```
 
-### style 
+### style
 
 A React.CSSProperties object, used for component styling.
 
@@ -135,8 +135,14 @@ export default function MyComponent() {
 ### onUploadProgress
 
 Callback called during the uploading process.
-An UploadProgressEvent object is accessible from it.
-Check the official documentation [here](https://github.com/apivideo/api.video-typescript-uploader#onprogress).
+An UploadProgressEvent object is accessible from it:
+
+- uploadedBytes (number): total number of bytes uploaded for this upload
+- totalBytes (number): total size of the file
+- chunksCount (number): number of upload chunks
+- chunksBytes (number): size of a chunk
+- currentChunk (number): index of the chunk being uploaded
+- currentChunkUploadedBytes (number): number of bytes uploaded for the current chunk
 
 Example:
 
@@ -160,7 +166,7 @@ export default function MyComponent() {
 
 Callback called after the upload process has been completed.
 A Video object is accessible from it.
-Check the official documentation [here](https://github.com/apivideo/api.video-nodejs-client/blob/main/doc/model/Video.md).
+Check the [official documentation](https://github.com/apivideo/api.video-nodejs-client/blob/main/doc/model/Video.md).
 
 Example:
 
@@ -183,7 +189,7 @@ export default function MyComponent() {
 ### onUploadError
 
 Callback called in case of an error during the uploading process.
-An error message object is accessible from it.
+A string error message is accessible from it.
 
 Example:
 
