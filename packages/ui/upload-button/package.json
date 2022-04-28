@@ -16,8 +16,8 @@
     "react-uploader",
     "js-uploader"
   ],
-  "homepage": "https://github.com/apivideo/react-packages/tree/main/packages/ui/upload-button",
-  "bugs": "https://github.com/apivideo/react-packages/issues",
+  "homepage": "https://github.com/apivideo/api.video-react-packages/tree/main/packages/ui/upload-button",
+  "bugs": "https://github.com/apivideo/api.video-react-packages/issues",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

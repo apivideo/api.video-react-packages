@@ -1,4 +1,4 @@
-import { UploadButton } from "@api.video/upload-button"
+import { UploadButton } from "@api.video/react-upload-button"
 import * as S from '../styles'
 
 export default function Docs() {
