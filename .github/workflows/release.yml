@@ -1,17 +1,23 @@
-name: Release packages
+name: Release package to npmjs
 on:
   release:
     types: [published]
 jobs:
-  deploy:
+  publish-npm-package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn
-      - name: Publish to npm
-        run: npm publish --workspace=packages/ui/react
+      - name: Retrieve the NPM workspace path
+        id: get-workspace-path
+        uses: apivideo/api.video-get-npm-workspace-path-from-release-action@0.0.4
+        with:
+          github-auth-token: ${{ secrets.GITHUB_TOKEN }}
+          package-name-suffix-to-ignore: "@"
+      - run: yarn          
+      - name: Publish workspace to NPM
+        run: npm publish --worspace ${{ steps.get-workspace-path.outputs.packagePath }} --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
